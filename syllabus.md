@@ -243,9 +243,11 @@ Week 1.
 
 **Lecture 1 — Limit Order Book Mechanics.** Order types (market, limit,
 IOC, post-only, hidden); price-time priority and the matching algorithm;
-L1/L2/L3 order-book views; tick size and lot size; and the Coincall
-exchange architecture (contract specifications, fee structure, market
-maker tiers).
+L1 and L2 order-book views (Coincall provides L2 aggregated depth; there
+is no L3 / per-order feed, so the program models aggregate intensity
+rather than individual queue position); tick size and lot size; and the
+Coincall exchange architecture (contract specifications, fee structure,
+market maker tiers).
 
 **Lecture 2 — Spread Decomposition and the Role of the Market Maker.**
 The bid-ask spread decomposed into adverse selection, inventory, and

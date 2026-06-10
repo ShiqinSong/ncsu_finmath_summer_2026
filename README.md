@@ -25,8 +25,9 @@ LaTeX compiles on a stock TeX install. The `.pptx` decks use the NC State
 theme (Wolfpack Red `#CC0000`, Arial) from
 `OptimalMarketMaking_WeeklyUpdate_06_08.pptx`.
 
-The original GLFT-centered materials are preserved as
-`glft_options_mm_*.{docx,pdf}` for reference.
+The original GLFT-centered materials were removed from the working tree to
+avoid confusion; they remain available in git history (the initial commit)
+if needed for reference.
 
 ### Weekly student presentations
 

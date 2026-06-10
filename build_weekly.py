@@ -67,7 +67,7 @@ WEEKS = [
   ("Lecture 1: Order Book Mechanics",
    ["Order types: market, limit, IOC, post-only, hidden",
     "Price-time priority and the matching algorithm",
-    "L1 / L2 / L3 views; tick size and lot size",
+    "L1 and L2 views (Coincall provides L2; there is no L3 feed); tick and lot size",
     "Coincall architecture: contracts, fees, market-maker tiers"]),
   ("Lecture 2: Spread Decomposition",
    ["Adverse selection, inventory, and order-processing costs",

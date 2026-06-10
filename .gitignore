@@ -10,3 +10,5 @@
 # Python
 __pycache__/
 *.pyc
+*.nav
+*.snm
