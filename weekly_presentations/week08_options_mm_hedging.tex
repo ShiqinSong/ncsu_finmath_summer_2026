@@ -37,6 +37,7 @@
   \item Derivation \& rationale
   \item Getting the data from Coincall
   \item Code: week8\_hedge.py
+  \item Summary \& key takeaways
   \item Glossary of key terms
   \item Reading
   \item References
@@ -110,6 +111,16 @@ def delta_hedge(net_delta, perp_pos, threshold=0.1):
     return perp_pos, torch.tensor(0.0)
 \end{lstlisting}
 \end{frame}
+\begin{frame}{Summary --- Key Takeaways}
+\begin{itemize}
+  \item Options inventory is a VECTOR of Greeks, penalized by (1/2) q\textasciicircum{}T Sigma q
+  \item The multi-Greek HJB reduces to Avellaneda-Stoikov in the 1-D limit
+  \item Gamma-theta-variance identity explains \textasciitilde{}80\% of a hedged book's P\&L
+  \item Hedge delta with the perpetual; account for the funding rate
+  \item Calibrate Sigma to the empirical Greek covariance, not the identity
+\end{itemize}
+\end{frame}
+
 \begin{frame}{Glossary --- Key Terms}
 \footnotesize\begin{description}
 \item[\color{ncsured}Greek inventory vector] aggregated (delta, gamma, vega, ...) exposure of the book

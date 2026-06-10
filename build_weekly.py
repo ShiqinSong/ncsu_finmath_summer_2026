@@ -762,6 +762,72 @@ REFERENCES = {
 }
 
 
+# ============================================================ SUMMARIES
+# Key takeaways per week (ASCII; shown as the closing wrap-up slide).
+SUMMARIES = {
+ "week01_introduction": [
+   "We build the MAKER side: continuously quote bid/ask and earn the spread",
+   "Avellaneda-Stoikov is the spine; you ship a calibrated engine by Week 5",
+   "Python/PyTorch for problem sets; C++ via pybind11 for fast computation",
+   "Three milestones (Wk 5, 7, 9); grading is 30/30/30/10",
+   "Data is Coincall (L2 only, no L3); confirm endpoints at docs.coincall.com"],
+ "week02_microstructure": [
+   "A limit order book is resting orders by price; mid = (best bid + best ask)/2",
+   "The spread pays for adverse selection, inventory, and order processing",
+   "Roll, Glosten-Milgrom, and Kyle each isolate a different spread component",
+   "Coincall gives L2 depth -> we model aggregate intensity, not queue position",
+   "Deliverable mindset: a clean, reusable order-book reconstructor"],
+ "week03_avellaneda_stoikov": [
+   "Model: arithmetic mid, exponential fill intensity, CARA utility",
+   "HJB + the exponential ansatz collapse the problem to ODEs in inventory",
+   "Reservation price skews quotes against inventory; r = S - q*gamma*sigma^2*(T-t)",
+   "Half-spread = order-flow term + inventory-risk term",
+   "Every modeling choice is made for tractability and has a clear interpretation"],
+ "week04_control": [
+   "Dynamic programming -> HJB is the engine behind every model in the course",
+   "The verification theorem certifies that an HJB solution is THE value function",
+   "CARA makes the optimal policy wealth-independent (ideal for a desk)",
+   "CRRA makes the policy scale with wealth (ideal for investment)",
+   "Avellaneda-Stoikov is one special case of this general template"],
+ "week05_engine_milestone1": [
+   "Closed-form quotes become a vectorized, tested PyTorch engine",
+   "Calibrate A, kappa by MAXIMUM LIKELIHOOD (fills are Poisson), report chi-square",
+   "Backtest = replay + fill simulator + P&L attribution",
+   "Reproducibility under a fixed seed is graded -- set your seeds",
+   "Milestone 1: engine within +/-50% of the reference P&L, report <= 10 pp."],
+ "week06_vol_surface": [
+   "Implied volatility forms a smile; SVI and SABR parameterize it",
+   "Fit with PyTorch autograd Jacobians -- no hand-derived gradients",
+   "Enforce calendar and butterfly no-arbitrage so the surface is tradeable",
+   "Greeks (incl. vanna, volga) come straight from autograd",
+   "Crypto data is noisy: weight by volume/spread and seed from yesterday's fit"],
+ "week07_fast_computation_milestone2": [
+   "Beyond Black-Scholes there is no closed form -- use the characteristic function",
+   "COS (Fang-Oosterlee) is the workhorse; truncate from the cumulants",
+   "Write the hot kernel in C++ and expose it to Python with pybind11",
+   "PyTorch autograd is the REFERENCE for Greeks; C++ is only the speed",
+   "Milestone 2: full surface < 5 ms (hard gate); release the GIL in the loop"],
+ "week08_options_mm_hedging": [
+   "Options inventory is a VECTOR of Greeks, penalized by (1/2) q^T Sigma q",
+   "The multi-Greek HJB reduces to Avellaneda-Stoikov in the 1-D limit",
+   "Gamma-theta-variance identity explains ~80% of a hedged book's P&L",
+   "Hedge delta with the perpetual; account for the funding rate",
+   "Calibrate Sigma to the empirical Greek covariance, not the identity"],
+ "week09_backtesting_taker_milestone3": [
+   "Event-driven, deterministic replay; beware look-ahead and 100% fills",
+   "Attribution MUST sum to total P&L -- a mismatch is always a bug",
+   "Report Sharpe with a block-bootstrap CI, not a bare point estimate",
+   "Taker flow (guest lecture) shapes the toxicity the maker must price",
+   "Milestone 3: full backtest on 3 months BTC & ETH, with a drawdown forensic"],
+ "week10_advanced_structured_products": [
+   "Pick ONE advanced extension; a clean partial result beats a grand unfinished one",
+   "Robust optimization widens quotes where parameter risk is highest",
+   "Corporate structured products (collars, accumulators, coupons) generate flow",
+   "That structured-product flow lands on -- and is hedged by -- the maker's book",
+   "Final: report (<= 30 pp.) + 20-minute talk; acknowledge limitations honestly"],
+}
+
+
 # ============================================================ PPTX RENDER
 def _set(run, size, color, bold=False, italic=False, mono=False):
     run.font.name = "Consolas" if mono else FONT
@@ -856,6 +922,8 @@ def deck_outline(w):
         items.append("Derivation & rationale")
     items.append("Getting the data from Coincall")
     items.append("Code: " + w["code"][0].split(" -- ")[0])
+    if w["stem"] in SUMMARIES:
+        items.append("Summary & key takeaways")
     if w["stem"] in GLOSSARIES:
         items.append("Glossary of key terms")
     items.append("Reading")
@@ -881,6 +949,8 @@ def build_pptx(w):
     _bullet_slide(prs, "Getting the Data from Coincall", w["data"],
                   sub="Cross-check exact paths at https://docs.coincall.com/", small=True)
     _code_slide(prs, w["code"][0], w["code"][1])
+    if w["stem"] in SUMMARIES:
+        _bullet_slide(prs, "Summary — Key Takeaways", SUMMARIES[w["stem"]])
     if w["stem"] in GLOSSARIES:
         _gloss_slide(prs, GLOSSARIES[w["stem"]])
     _bullet_slide(prs, "Reading", w["reading"])
@@ -973,6 +1043,9 @@ def build_beamer_tex(w):
     L.append(r"\begin{frame}[fragile]{Code --- %s}" % esc(w["code"][0].split(" -- ")[0]))
     L.append(r"\begin{lstlisting}" + "\n" + w["code"][1].strip("\n") + "\n" + r"\end{lstlisting}")
     L.append(r"\end{frame}")
+    # summary (key takeaways)
+    if w["stem"] in SUMMARIES:
+        L.append(frame("Summary --- Key Takeaways", itemize(SUMMARIES[w["stem"]])))
     # glossary
     if w["stem"] in GLOSSARIES:
         gl = [r"\footnotesize\begin{description}"]

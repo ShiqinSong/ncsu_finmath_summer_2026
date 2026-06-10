@@ -37,6 +37,7 @@
   \item Derivation \& rationale
   \item Getting the data from Coincall
   \item Code: week6\_bs\_autograd.py
+  \item Summary \& key takeaways
   \item Glossary of key terms
   \item Reading
   \item References
@@ -114,6 +115,16 @@ volga, = torch.autograd.grad(vega, sig)                    # d vega / d sig
 print(float(price), float(vega), float(vanna), float(volga))
 \end{lstlisting}
 \end{frame}
+\begin{frame}{Summary --- Key Takeaways}
+\begin{itemize}
+  \item Implied volatility forms a smile; SVI and SABR parameterize it
+  \item Fit with PyTorch autograd Jacobians -- no hand-derived gradients
+  \item Enforce calendar and butterfly no-arbitrage so the surface is tradeable
+  \item Greeks (incl. vanna, volga) come straight from autograd
+  \item Crypto data is noisy: weight by volume/spread and seed from yesterday's fit
+\end{itemize}
+\end{frame}
+
 \begin{frame}{Glossary --- Key Terms}
 \footnotesize\begin{description}
 \item[\color{ncsured}Implied volatility] the volatility that matches the market option price under Black-Scholes

@@ -37,6 +37,7 @@
   \item Derivation \& rationale
   \item Getting the data from Coincall
   \item Code: fastmm pybind11 module
+  \item Summary \& key takeaways
   \item Glossary of key terms
   \item Reading
   \item References
@@ -117,6 +118,16 @@ py::array_t<double> price_surface(py::array_t<double> K, double S,
 PYBIND11_MODULE(fastmm, m) { m.def("price_surface", &price_surface); }
 \end{lstlisting}
 \end{frame}
+\begin{frame}{Summary --- Key Takeaways}
+\begin{itemize}
+  \item Beyond Black-Scholes there is no closed form -- use the characteristic function
+  \item COS (Fang-Oosterlee) is the workhorse; truncate from the cumulants
+  \item Write the hot kernel in C++ and expose it to Python with pybind11
+  \item PyTorch autograd is the REFERENCE for Greeks; C++ is only the speed
+  \item Milestone 2: full surface \textless{} 5 ms (hard gate); release the GIL in the loop
+\end{itemize}
+\end{frame}
+
 \begin{frame}{Glossary --- Key Terms}
 \footnotesize\begin{description}
 \item[\color{ncsured}Characteristic function] the Fourier transform of the log-return density

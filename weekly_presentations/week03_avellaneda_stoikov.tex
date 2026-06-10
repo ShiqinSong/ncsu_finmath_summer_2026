@@ -37,6 +37,7 @@
   \item Derivation \& rationale
   \item Getting the data from Coincall
   \item Code: week3\_as\_quotes.py
+  \item Summary \& key takeaways
   \item Glossary of key terms
   \item Reading
   \item References
@@ -143,6 +144,16 @@ print("inventory ->", q.tolist())
 print("bid       ->", bid.round(decimals=2).tolist())
 \end{lstlisting}
 \end{frame}
+\begin{frame}{Summary --- Key Takeaways}
+\begin{itemize}
+  \item Model: arithmetic mid, exponential fill intensity, CARA utility
+  \item HJB + the exponential ansatz collapse the problem to ODEs in inventory
+  \item Reservation price skews quotes against inventory; r = S - q*gamma*sigma\textasciicircum{}2*(T-t)
+  \item Half-spread = order-flow term + inventory-risk term
+  \item Every modeling choice is made for tractability and has a clear interpretation
+\end{itemize}
+\end{frame}
+
 \begin{frame}{Glossary --- Key Terms}
 \footnotesize\begin{description}
 \item[\color{ncsured}Reservation price] inventory-adjusted indifference price that quotes are centered on

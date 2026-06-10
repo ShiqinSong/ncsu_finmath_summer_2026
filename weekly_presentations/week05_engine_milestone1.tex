@@ -37,6 +37,7 @@
   \item Derivation \& rationale
   \item Getting the data from Coincall
   \item Code: week5\_calibrate.py
+  \item Summary \& key takeaways
   \item Glossary of key terms
   \item Reading
   \item References
@@ -111,6 +112,16 @@ for step in range(2000):
 print("A =", torch.exp(logA).item(), " kappa =", kappa.item())
 \end{lstlisting}
 \end{frame}
+\begin{frame}{Summary --- Key Takeaways}
+\begin{itemize}
+  \item Closed-form quotes become a vectorized, tested PyTorch engine
+  \item Calibrate A, kappa by MAXIMUM LIKELIHOOD (fills are Poisson), report chi-square
+  \item Backtest = replay + fill simulator + P\&L attribution
+  \item Reproducibility under a fixed seed is graded -- set your seeds
+  \item Milestone 1: engine within +/-50\% of the reference P\&L, report \textless{}= 10 pp.
+\end{itemize}
+\end{frame}
+
 \begin{frame}{Glossary --- Key Terms}
 \footnotesize\begin{description}
 \item[\color{ncsured}Maximum likelihood (MLE)] fitting parameters by maximizing the likelihood of the data

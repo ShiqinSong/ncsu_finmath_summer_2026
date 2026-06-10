@@ -37,6 +37,7 @@
   \item Derivation \& rationale
   \item Getting the data from Coincall
   \item Code: week10\_collar.py
+  \item Summary \& key takeaways
   \item Glossary of key terms
   \item Reading
   \item References
@@ -100,6 +101,16 @@ S = np.linspace(60, 140, 9)
 print(dict(zip(S.round(0), collar_payoff(S).round(1))))   # capped above, floored below
 \end{lstlisting}
 \end{frame}
+\begin{frame}{Summary --- Key Takeaways}
+\begin{itemize}
+  \item Pick ONE advanced extension; a clean partial result beats a grand unfinished one
+  \item Robust optimization widens quotes where parameter risk is highest
+  \item Corporate structured products (collars, accumulators, coupons) generate flow
+  \item That structured-product flow lands on -- and is hedged by -- the maker's book
+  \item Final: report (\textless{}= 30 pp.) + 20-minute talk; acknowledge limitations honestly
+\end{itemize}
+\end{frame}
+
 \begin{frame}{Glossary --- Key Terms}
 \footnotesize\begin{description}
 \item[\color{ncsured}Multi-asset market making] jointly quoting correlated underlyings (e.g., BTC and ETH)

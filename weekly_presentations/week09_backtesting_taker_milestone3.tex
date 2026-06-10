@@ -37,6 +37,7 @@
   \item Derivation \& rationale
   \item Getting the data from Coincall
   \item Code: week9\_attribution.py
+  \item Summary \& key takeaways
   \item Glossary of key terms
   \item Reading
   \item References
@@ -109,6 +110,16 @@ def bootstrap_sharpe(r, block=5, n=2000, seed=0):
     return np.percentile(out, [2.5, 50, 97.5])               # CI for the Sharpe
 \end{lstlisting}
 \end{frame}
+\begin{frame}{Summary --- Key Takeaways}
+\begin{itemize}
+  \item Event-driven, deterministic replay; beware look-ahead and 100\% fills
+  \item Attribution MUST sum to total P\&L -- a mismatch is always a bug
+  \item Report Sharpe with a block-bootstrap CI, not a bare point estimate
+  \item Taker flow (guest lecture) shapes the toxicity the maker must price
+  \item Milestone 3: full backtest on 3 months BTC \& ETH, with a drawdown forensic
+\end{itemize}
+\end{frame}
+
 \begin{frame}{Glossary --- Key Terms}
 \footnotesize\begin{description}
 \item[\color{ncsured}Event-driven backtest] a simulation that replays timestamped events in order

@@ -37,6 +37,7 @@
   \item Derivation \& rationale
   \item Getting the data from Coincall
   \item Code: week4\_merton.py
+  \item Summary \& key takeaways
   \item Glossary of key terms
   \item Reading
   \item References
@@ -121,6 +122,16 @@ for _ in range(1000):                         # march backward in time
 print("pi* (constant in wealth):", (mu - r)/(gam*sig**2))
 \end{lstlisting}
 \end{frame}
+\begin{frame}{Summary --- Key Takeaways}
+\begin{itemize}
+  \item Dynamic programming -\textgreater{} HJB is the engine behind every model in the course
+  \item The verification theorem certifies that an HJB solution is THE value function
+  \item CARA makes the optimal policy wealth-independent (ideal for a desk)
+  \item CRRA makes the policy scale with wealth (ideal for investment)
+  \item Avellaneda-Stoikov is one special case of this general template
+\end{itemize}
+\end{frame}
+
 \begin{frame}{Glossary --- Key Terms}
 \footnotesize\begin{description}
 \item[\color{ncsured}Stochastic optimal control] choosing controls to optimize an expected objective under randomness

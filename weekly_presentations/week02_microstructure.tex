@@ -36,6 +36,7 @@
   \item Illustration
   \item Getting the data from Coincall
   \item Code: week2\_orderbook.py
+  \item Summary \& key takeaways
   \item Glossary of key terms
   \item Reading
   \item References
@@ -105,6 +106,16 @@ def l2_top_of_book(symbol, key, secret):
 #   book["mid"] = 0.5 * (book.bid_px_0 + book.ask_px_0)
 \end{lstlisting}
 \end{frame}
+\begin{frame}{Summary --- Key Takeaways}
+\begin{itemize}
+  \item A limit order book is resting orders by price; mid = (best bid + best ask)/2
+  \item The spread pays for adverse selection, inventory, and order processing
+  \item Roll, Glosten-Milgrom, and Kyle each isolate a different spread component
+  \item Coincall gives L2 depth -\textgreater{} we model aggregate intensity, not queue position
+  \item Deliverable mindset: a clean, reusable order-book reconstructor
+\end{itemize}
+\end{frame}
+
 \begin{frame}{Glossary --- Key Terms}
 \footnotesize\begin{description}
 \item[\color{ncsured}Limit order book (LOB)] all resting limit orders organized by price level

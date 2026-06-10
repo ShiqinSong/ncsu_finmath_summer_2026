@@ -40,6 +40,7 @@
   \item Illustration
   \item Getting the data from Coincall
   \item Code: coincall\_client.py
+  \item Summary \& key takeaways
   \item Glossary of key terms
   \item Reading
   \item References
@@ -168,6 +169,16 @@ def signed_get(path, params=None, api_key="", api_secret=""):
 print(signed_get("/open/option/getInstruments/BTC"))
 \end{lstlisting}
 \end{frame}
+\begin{frame}{Summary --- Key Takeaways}
+\begin{itemize}
+  \item We build the MAKER side: continuously quote bid/ask and earn the spread
+  \item Avellaneda-Stoikov is the spine; you ship a calibrated engine by Week 5
+  \item Python/PyTorch for problem sets; C++ via pybind11 for fast computation
+  \item Three milestones (Wk 5, 7, 9); grading is 30/30/30/10
+  \item Data is Coincall (L2 only, no L3); confirm endpoints at docs.coincall.com
+\end{itemize}
+\end{frame}
+
 \begin{frame}{Glossary --- Key Terms}
 \footnotesize\begin{description}
 \item[\color{ncsured}Market maker] liquidity provider that continuously quotes bid and ask, earning the spread
