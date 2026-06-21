@@ -18,6 +18,10 @@ build/
 *.so
 *.o
 .venv/
+.tools/
+
+# Microsoft Office temporary lock files
+~$*.pptx
 
 # macOS
 .DS_Store
