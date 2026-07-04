@@ -26,4 +26,12 @@ build/
 
 # macOS
 .DS_Store
+<<<<<<< HEAD
 /CLAUDE.md
+=======
+testing.ipynb
+OptionsData
+
+
+OptionsData/*
+>>>>>>> da97b92 (Week 4 and Week 5 changes)
