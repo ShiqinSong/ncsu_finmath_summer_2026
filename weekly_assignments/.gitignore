@@ -1,3 +1,5 @@
 /week*/figures/*
 /week*/output/*
 *.md
+*.pdf
+*.tex

@@ -33,13 +33,19 @@ def butterfly_g(k, params):
     return term.detach()
 
 
-def calibrate(k, w_market, steps=4000, lr=1e-2):
-    """Fit raw-SVI parameters to observed total variances by autograd LSQ."""
-    a = torch.tensor(0.04, requires_grad=True)
-    b = torch.tensor(0.2, requires_grad=True)
-    rho = torch.tensor(-0.3, requires_grad=True)
-    m = torch.tensor(0.0, requires_grad=True)
-    s = torch.tensor(0.2, requires_grad=True)
+def calibrate(k, w_market, steps=4000, lr=1e-2, init=None):
+    """Fit raw-SVI parameters to observed total variances by autograd LSQ.
+
+    ``init`` optionally supplies a starting ``(a, b, rho, m, s)`` tuple (e.g.
+    the previous day's fitted params, for warm-starting a rolling daily
+    calibration); defaults to a fixed generic starting point.
+    """
+    a0, b0, rho0, m0, s0 = init if init is not None else (0.04, 0.2, -0.3, 0.0, 0.2)
+    a = torch.tensor(float(a0), requires_grad=True)
+    b = torch.tensor(float(b0), requires_grad=True)
+    rho = torch.tensor(float(rho0), requires_grad=True)
+    m = torch.tensor(float(m0), requires_grad=True)
+    s = torch.tensor(float(s0), requires_grad=True)
     opt = torch.optim.Adam([a, b, rho, m, s], lr=lr)
     for _ in range(steps):
         w = svi_total_variance(k, a, b, rho.clamp(-0.999, 0.999), m, s.clamp(min=1e-3))
@@ -47,7 +53,7 @@ def calibrate(k, w_market, steps=4000, lr=1e-2):
         opt.zero_grad(); loss.backward(); opt.step()
     params = (a.detach(), b.detach(), rho.detach().clamp(-0.999, 0.999),
               m.detach(), s.detach().clamp(min=1e-3))
-    return params, float(loss)
+    return params, float(loss.detach())
 
 
 if __name__ == "__main__":
